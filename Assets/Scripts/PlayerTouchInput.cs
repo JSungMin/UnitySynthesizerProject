@@ -14,6 +14,8 @@ public class PlayerTouchInput : MonoBehaviour {
 	public ClickAbleObject nowClickedObj;
 	public ClickAbleObject prevClickedObj;
 
+	public int nowPianoInputOctave = 1;
+
 	void Start ()
 	{
 		instance = this;
@@ -39,37 +41,34 @@ public class PlayerTouchInput : MonoBehaviour {
 	void GetTouchInput ()
 	{
 		for (int i = 0; i < Input.touchCount; i++) {
-			var touch = Input.GetTouch (i);
-			if (nowPanel == NowSelectedPanel.PianoInputPanel)
-				InputInPianoInputPanel (touch);
-			if (nowPanel == NowSelectedPanel.PianoRollPanel)
-				InputInPianoRollPanel (touch);
-			if (nowPanel == NowSelectedPanel.ADSRPanel)
-				InputInADSRPanel (touch);
-		}
-	}
+			if (Input.touchCount >= 2) {
+				var firstTouch = Input.GetTouch (0);
+				var secondTouch = Input.GetTouch (1);
+				if (firstTouch.phase == TouchPhase.Moved && secondTouch.phase == TouchPhase.Moved) {
+					//Move Piano Roll
+					var firstDeltaPos = firstTouch.deltaPosition;
 
-	public void InputInPianoInputPanel (Touch touch)
-	{
-		var touchPosition = touch.position;
-		switch (touch.phase) {
-		case TouchPhase.Began:
-			if (Physics.Raycast (touchPosition, Vector3.forward, out hit)) {
-				var obj = hit.collider.GetComponent<ClickAbleObject> ();
-
-			}
-			break;
-		case TouchPhase.Moved:
-			if (null != nowClickedObj && nowClickedObj.clickableType == ClickableType.ClickAndDrag) {
-				nowClickedObj.dragAction.Invoke (nowClickedObj, touchPosition);
+					Debug.Log (firstDeltaPos);
+				
+					if (nowPanel == NowSelectedPanel.PianoRollPanel) {
+						if (Mathf.Abs (firstDeltaPos.x) > Mathf.Abs (firstDeltaPos.y)) {
+							Camera.main.transform.Translate ((firstDeltaPos.x) * Vector3.right * Time.deltaTime * 0.5f);
+						} else {
+							Camera.main.transform.Translate ((firstDeltaPos.y) * Vector3.up * Time.deltaTime * 0.5f);
+						}
+					}
+				}
+				return;
 			} 
-			break;
-		case TouchPhase.Stationary:
-			break;
-		case TouchPhase.Ended:
-			ChangeClickObject (null);
-			break;
+			else {
+				var touch = Input.GetTouch (i);
+				if (nowPanel == NowSelectedPanel.PianoRollPanel)
+					InputInPianoRollPanel (touch);
+				if (nowPanel == NowSelectedPanel.ADSRPanel)
+					InputInADSRPanel (touch);
+			}
 		}
+
 	}
 
 	public PianoRollToolType rollToolType = PianoRollToolType.Pencil;
