@@ -1,0 +1,27 @@
+' !!! WARNING : SKINNING IS NOT SUPPORTED ANYMORE !!!
+
+' version
+Version=5
+
+' Starting bottom hint (should be the title or the skin)
+Hint=
+
+' MenuItems.BMP separations
+MenuSep=32,64,123,160,211,252
+
+' title bar font (name, color, height)
+TitleFont=Tahoma,$ffd200,-11
+' hint font
+HintFont=Tahoma,$ffd200,-11
+' sample browser tree font
+SBTreeFont=Tahoma,$ffd200,-11
+
+' scope color
+ScopeCol=$ffd200
+' sample settings scope colors
+SampleScopeCol=$00ffd200,$00ffd200,$00ffd200
+
+' chan pan/vol, mute, set, select, grid, piano roll relative positions (set of X,Y points)
+ChanBtns=17,5, 5,9, 56,0, 134,0,151,0,8,14
+
+' GraphCol=$00ffd200,$00ffd200,$00ffd200,$00ffd200,$00ffd200,$00ffd200
