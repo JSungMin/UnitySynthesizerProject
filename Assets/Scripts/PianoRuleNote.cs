@@ -16,7 +16,7 @@ public class PianoRuleNote : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetMouseButton(0))
+        /*if (Input.GetMouseButton(0))
         {
             if (firstX == -1 && firstY == -1 && instObj == null)
             {
@@ -43,7 +43,7 @@ public class PianoRuleNote : MonoBehaviour {
             firstX = -1;
             firstY = -1;
             instObj = null;
-        }
+        }*/
         	
 	}
 }

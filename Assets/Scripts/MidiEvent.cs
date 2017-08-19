@@ -20,6 +20,7 @@ using System.Text;
     * A MidiEvent represents a single event (such as EventNoteOn) in the
     * Midi file. It includes the delta time of the event.
     */
+[System.Serializable]
 public class MidiEvent : IComparer<MidiEvent>
 {
 
