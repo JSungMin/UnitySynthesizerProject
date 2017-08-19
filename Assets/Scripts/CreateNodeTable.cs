@@ -6,25 +6,26 @@ public class CreateNodeTable : MonoBehaviour {
 
     public enum timeResolution
     {
-       Quarter,Eighth,Sixteenth
+       Quarter,Eighth
     }
     public timeResolution resolution = timeResolution.Quarter;
     //Xsize = 64px, Ysize = 54px
     public GameObject QuarterNote;
     public GameObject EighthNote;
-    public GameObject SixteenthNote;
+
 
 
     GameObject cur_obj;
     public List<GameObject> resolObj;
+    public List<Vector3> notePos;
 
 	// Use this for initialization
 	void Start () {
 
         resolObj.Add(Instantiate(QuarterNote) as GameObject);
         resolObj.Add(Instantiate(EighthNote) as GameObject);
-        resolObj.Add(Instantiate(SixteenthNote) as GameObject);
-        for(int i=0; i<3; i++)
+
+        for(int i=0; i<2; i++)
         {
             resolObj[i].transform.parent = transform;
             resolObj[i].SetActive(false);
@@ -40,10 +41,7 @@ public class CreateNodeTable : MonoBehaviour {
                 cur_obj = resolObj[1];
                 resolObj[1].SetActive(true);
                 break;
-            case timeResolution.Sixteenth:
-                cur_obj = resolObj[2];
-                resolObj[2].SetActive(true);
-                break;
+
         }
     }
 	
@@ -72,11 +70,7 @@ public class CreateNodeTable : MonoBehaviour {
                 resolObj[1].SetActive(true);
                 cur_obj = resolObj[1];
             }
-            else if(resol == "Sixteenth")
-            {
-                resolObj[2].SetActive(true);
-                cur_obj = resolObj[2];
-            }else
+            else
             {
                 print("Error. No proper value to change");
             }

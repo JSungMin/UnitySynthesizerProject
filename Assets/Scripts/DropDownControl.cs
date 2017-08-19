@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class DropDownControl : MonoBehaviour {
 
+    public static DropDownControl instance;
+
     Dropdown drop;
     public GameObject table;
     CreateNodeTable tableChanger;
+
 	// Use this for initialization
 	void Start () {
+        instance = this;
         drop = GetComponent<Dropdown>();
         tableChanger = table.GetComponent<CreateNodeTable>();
         drop.onValueChanged.AddListener(delegate { dropdownValueChangeHandler(drop); });
@@ -28,9 +32,6 @@ public class DropDownControl : MonoBehaviour {
         }else if(target.value == 1)
         {
             tmp = "Eighth";
-        }else if(target.value == 2)
-        {
-            tmp = "Sixteenth";
         }
         else
         {
