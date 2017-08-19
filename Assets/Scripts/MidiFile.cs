@@ -184,7 +184,9 @@ public class MidiFile : MonoBehaviour
     private ushort trackmode;         /** 0 (single track), 1 (simultaneous tracks) 2 (independent tracks) */
     private int quarternote;          /** The number of pulses per quarter note */
     private int totalpulses;          /** The total length of the song, in pulses */
+    private int tempo;
     private bool trackPerChannel;     /** True if we've split each channel into a track */
+    public GameObject MidiPlayer;
 
     /* The list of Midi Events */
     public const int EventNoteOff = 0x80;
@@ -445,7 +447,7 @@ public class MidiFile : MonoBehaviour
 
     public void Start()
     {
-        MidiFileRead("Assets/Scripts/SONG01.mid");
+        MidiFileRead("Assets/Scripts/mp.mid");
     }
 
     /** Parse the given Midi file, and return an instance of this MidiFile
@@ -493,9 +495,9 @@ public class MidiFile : MonoBehaviour
         foreach (MidiTrack track in tracks)
         {
             MidiNote last = track.Notes[track.Notes.Count - 1];
-            if (this.totalpulses < last.StartTime + last.Duration)
+            if (totalpulses < last.StartTime + last.Duration)
             {
-                this.totalpulses = last.StartTime + last.Duration;
+                totalpulses = last.StartTime + last.Duration;
             }
         }
 
@@ -511,7 +513,7 @@ public class MidiFile : MonoBehaviour
         //CheckStartTimes(tracks);
 
         /* Determine the time signature */
-        int tempo = 0;
+        tempo = 0;
         int numer = 0;
         int denom = 0;
         foreach (List<MidiEvent> list in events)
@@ -541,6 +543,12 @@ public class MidiFile : MonoBehaviour
 
         Debug.Log(quarternote);
         Debug.Log(events[1][8].Notenumber);
+        MidiPlayer.GetComponent<MidiPlayer>().tracks = tracks;
+        MidiPlayer.GetComponent<MidiPlayer>().tempo = tempo;
+        MidiPlayer.GetComponent<MidiPlayer>().quarternote = quarternote;
+        MidiPlayer.GetComponent<MidiPlayer>().totalpulses = totalpulses;
+        MidiPlayer.GetComponent<MidiPlayer>().ticksPerSecond = (60000000 / tempo * quarternote / 60);
+        MidiPlayer.GetComponent<MidiPlayer>().events = events;
     }
 
     /** Parse a single Midi track into a list of MidiEvents.

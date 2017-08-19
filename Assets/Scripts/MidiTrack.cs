@@ -30,17 +30,59 @@ using System.Text;
 public class MidiTrack
 {
     private int tracknum;             /** The track number */
-    private List<MidiNote> notes;     /** List of Midi notes */
+    public List<MidiNote> notes;     /** List of Midi notes */
+
     private int instrument;           /** Instrument for this track */
     private List<MidiEvent> lyrics;   /** The lyrics in this track */
 
     /** Create an empty MidiTrack.  Used by the Clone method */
     public MidiTrack(int tracknum)
     {
-        this.tracknum = tracknum;
+        tracknum = tracknum;
         notes = new List<MidiNote>(20);
         instrument = 0;
     }
+
+
+    public void RecordStop(MidiTrack track, List<MidiNote> record)
+    {
+        foreach (MidiNote rNote in record)
+        {
+            for (int i = track.Notes.Count - 1; i >= 0; i--)
+            {
+                if (rNote.StartTime >= track.Notes[i].StartTime)
+                {
+                    track.Notes.Insert(i + 1, rNote);
+                }
+            }
+        }
+        //int left = 0;
+        //int mid = 0;
+        //int right = track.notes.Count - 1;
+        //foreach (MidiNote rNote in record)
+        //{
+        //    int target = rNote.StartTime;
+
+        //    while (left <= right)
+        //    {
+        //        mid = (left + right) / 2;
+
+        //        if (target >= track.notes[mid].StartTime)
+        //        {
+        //            break;
+        //        }
+        //    }
+        //}
+    }
+    //}
+
+    //foreach (var note in notes)
+    //        {
+    //            nn.Add(new NoteData(i.StartTime, true, i.Number, i.Channel)); // 시작시간, Key OFF, 음계, ?, 채널
+    //            nn.Add(new NoteData(i.EndTime, false, i.Number, i.Channel));
+    //        }
+    //        nn.Sort(((x, y) => x.time - y.time));
+    //        return nn;
 
     /** Create a MidiTrack based on the Midi events.  Extract the NoteOn/NoteOff
         *  events to gather the list of MidiNotes.
