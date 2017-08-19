@@ -447,7 +447,14 @@ public class MidiFile : MonoBehaviour
 
     public void Start()
     {
-        MidiFileRead("Assets/Scripts/mp.mid");
+        tracks = new List<MidiTrack>();
+        tempo = 500000;
+        quarternote = 128;
+        totalpulses = 5000;
+        events = new List<MidiEvent>[16];
+        MidiPlayerUpdate();
+
+     //   MidiFileRead("Assets/Scripts/mp.mid");
     }
 
     /** Parse the given Midi file, and return an instance of this MidiFile
@@ -543,6 +550,11 @@ public class MidiFile : MonoBehaviour
 
         Debug.Log(quarternote);
         Debug.Log(events[1][8].Notenumber);
+        MidiPlayerUpdate();
+    }
+
+    public void MidiPlayerUpdate()
+    {
         MidiPlayer.GetComponent<MidiPlayer>().tracks = tracks;
         MidiPlayer.GetComponent<MidiPlayer>().tempo = tempo;
         MidiPlayer.GetComponent<MidiPlayer>().quarternote = quarternote;

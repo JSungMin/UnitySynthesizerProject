@@ -10,6 +10,9 @@ public class MidiPlayer : MonoBehaviour
     public GameObject parent;
     public GameObject soundObject;
 
+    public bool isPlaying = false;
+    public bool isSorted = false;
+
     public float currentTimer = 0f;
     public int quarternote;
     public int tempo;
@@ -52,53 +55,95 @@ public class MidiPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentTimer += ticksPerSecond * Time.fixedDeltaTime;
+        if (isPlaying)
+            currentTimer += ticksPerSecond * Time.fixedDeltaTime;
+        else
+            currentTimer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        debugTimer += Time.deltaTime;
-
-        if (debugTimer > 1f)
+        if (isSorted)
         {
-            Debug.Log("Current Ticks : " + currentTimer);
-            Debug.Log(events.Length);
-            debugTimer = 0f;
+            isSorted = false;
+
+            List<MidiEvent> mevents = new List<MidiEvent>();
+            foreach (var un in EditableMidiData.instance.uiNoteList)
+            {
+                mevents.Add(un.noteOnEvent);
+                mevents.Add(un.noteOffEvent);
+            }
+
+            SortDataByStartTime(events[0], mevents);
         }
 
-        currentTrackIndex = 0;
-
-        for (int i = 0; i < events.Length && currentTimer <= totalpulses; i++)
+        if (isPlaying)
         {
-            List<MidiEvent> mevent = events[i];
 
-            currEventCount = tmpEventIndex[i];
-            while (currEventCount < mevent.Count && currentTimer >= mevent[currEventCount].StartTime)
+            debugTimer += Time.deltaTime;
+
+            if (debugTimer > 1f)
             {
-                if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity > 0 &&
-                    currentTimer >= mevent[currEventCount].StartTime)
-                {
-                    currNoteNumber = mevent[currEventCount].Notenumber;
-                    sList[currNoteNumber - 24].GetComponent<AudioSource>().Play();
-                }
-                else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity == 0 && currentTimer >= mevent[currEventCount].StartTime)
-                {
-                  //  sList[currNoteNumber - 24].GetComponent<AudioSource>().Stop();
-                }
-                else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOff && currentTimer >= mevent[currEventCount].StartTime)
-                {
-                 //   sList[currNoteNumber - 24].GetComponent<AudioSource>().Stop();
-                }
-                else if (mevent[currEventCount].EventFlag == MidiFile.MetaEvent && mevent[currEventCount].Tempo != 0)
-                {
-                    tempo = mevent[currEventCount].Tempo;
-                    ticksPerSecond = (totalTempo / tempo * quarternote / 60);
-                    Debug.Log("tempo : " + tempo);
-                }
-                currEventCount++;
+                Debug.Log("Current Ticks : " + currentTimer);
+                Debug.Log(events.Length);
+                debugTimer = 0f;
             }
-            tmpEventIndex[i] = currEventCount;
+
+            currentTrackIndex = 0;
+
+            for (int i = 0; i < events.Length && currentTimer <= totalpulses; i++)
+            {
+                List<MidiEvent> mevent = events[i];
+
+                currEventCount = tmpEventIndex[i];
+                while (currEventCount < mevent.Count && currentTimer >= mevent[currEventCount].StartTime)
+                {
+                    if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity > 0 &&
+                        currentTimer >= mevent[currEventCount].StartTime)
+                    {
+                        currNoteNumber = mevent[currEventCount].Notenumber;
+                        sList[currNoteNumber - 24].GetComponent<AudioSource>().Play();
+                    }
+                    else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity == 0 && currentTimer >= mevent[currEventCount].StartTime)
+                    {
+                        //  sList[currNoteNumber - 24].GetComponent<AudioSource>().Stop();
+                    }
+                    else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOff && currentTimer >= mevent[currEventCount].StartTime)
+                    {
+                        //   sList[currNoteNumber - 24].GetComponent<AudioSource>().Stop();
+                    }
+                    else if (mevent[currEventCount].EventFlag == MidiFile.MetaEvent && mevent[currEventCount].Tempo != 0)
+                    {
+                        tempo = mevent[currEventCount].Tempo;
+                        ticksPerSecond = (totalTempo / tempo * quarternote / 60);
+                        Debug.Log("tempo : " + tempo);
+                    }
+                    currEventCount++;
+                }
+                tmpEventIndex[i] = currEventCount;
+            }
+        }
+    }
+
+    public void SortDataByStartTime(List<MidiEvent> source, List<MidiEvent> events)
+    {
+        foreach (MidiEvent mevent in events)
+        {
+            for (int i = source.Count - 1; i >= 0; i--)
+            {
+                if (i >= 0 && mevent.StartTime >= source[i].StartTime)
+                {
+                    if (i == source.Count - 1)
+                    {
+                        source.Add(mevent);
+                    }
+                    else
+                    {
+                        source.Insert(i + 1, mevent);
+                    }
+                }
+            }
         }
     }
 }

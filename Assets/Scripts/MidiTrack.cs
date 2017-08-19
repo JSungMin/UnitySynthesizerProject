@@ -44,37 +44,19 @@ public class MidiTrack
     }
 
 
-    public void RecordStop(MidiTrack track, List<MidiNote> record)
+    public void SortDataByStartTime(List<MidiEvent> source, List<MidiEvent> events)
     {
-        foreach (MidiNote rNote in record)
+        foreach (MidiEvent mevent in events)
         {
-            for (int i = track.Notes.Count - 1; i >= 0; i--)
+            for (int i = source.Count - 1; i >= 0; i--)
             {
-                if (rNote.StartTime >= track.Notes[i].StartTime)
+                if (mevent.StartTime >= source[i].StartTime)
                 {
-                    track.Notes.Insert(i + 1, rNote);
+                    source.Insert(i + 1, mevent);
                 }
             }
         }
-        //int left = 0;
-        //int mid = 0;
-        //int right = track.notes.Count - 1;
-        //foreach (MidiNote rNote in record)
-        //{
-        //    int target = rNote.StartTime;
-
-        //    while (left <= right)
-        //    {
-        //        mid = (left + right) / 2;
-
-        //        if (target >= track.notes[mid].StartTime)
-        //        {
-        //            break;
-        //        }
-        //    }
-        //}
     }
-    //}
 
     //foreach (var note in notes)
     //        {
