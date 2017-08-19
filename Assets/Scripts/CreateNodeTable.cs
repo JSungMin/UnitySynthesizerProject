@@ -14,7 +14,6 @@ public class CreateNodeTable : MonoBehaviour {
     public GameObject EighthNote;
 
 
-
     GameObject cur_obj;
     public List<GameObject> resolObj;
     public List<Vector3> notePos;
@@ -50,6 +49,7 @@ public class CreateNodeTable : MonoBehaviour {
         
 		
 	}
+
     public void changeResolution(string resol)
     {
         if(cur_obj.name == resol + "Note")
@@ -64,16 +64,20 @@ public class CreateNodeTable : MonoBehaviour {
             {
                 resolObj[0].SetActive(true);
                 cur_obj = resolObj[0];
-            }
+				resolution = timeResolution.Quarter;
+				
+			}
             else if(resol == "Eighth")
             {
                 resolObj[1].SetActive(true);
                 cur_obj = resolObj[1];
+				resolution = timeResolution.Eighth;
             }
             else
             {
                 print("Error. No proper value to change");
             }
         }
+
     }
 }

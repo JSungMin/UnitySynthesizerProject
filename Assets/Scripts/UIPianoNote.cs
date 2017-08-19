@@ -61,8 +61,9 @@ public class UIPianoNote : ClickAbleObject {
 
 		var multipler = 1;
 
-		if (table.resolution == CreateNodeTable.timeResolution.Eighth)
+		if (table.resolution == CreateNodeTable.timeResolution.Eighth) {
 			multipler = 2;
+		}
 		
 		diviX = (int)(touchPos.x / (0.64f / multipler));
 		diviY = (int)(touchPos.y / 0.54f);
@@ -90,8 +91,12 @@ public class UIPianoNote : ClickAbleObject {
 
 		var multipler = 1;
 
-		if (table.resolution == CreateNodeTable.timeResolution.Eighth)
+		Debug.Log (table.resolution);
+
+		if (table.resolution == CreateNodeTable.timeResolution.Eighth) {
 			multipler = 2;
+			Debug.Log ("Eight : " + multipler);
+		}
 
 		diviX = (int)(Mathf.Max (pos.x - originPosition.x, 0) / (0.64f / multipler)) + 1;
 
