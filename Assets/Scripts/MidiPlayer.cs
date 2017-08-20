@@ -25,13 +25,42 @@ public class MidiPlayer : MonoBehaviour
 
     public float ticksPerSecond;
     public List<MidiTrack> tracks;
+	[SerializeField]
     public List<MidiEvent>[] events;
     public int[] tmpEventIndex = new int[32];
 
     private const float totalTempo = 60000000;
     private int currentTrackIndex;
-    private int currentNoteCount;
     public int totalpulses;
+
+	public void PlayPlayer ()
+	{
+		SetSort ();
+		isPlaying = true;
+	}
+
+	public void SetSort() {
+		List<MidiEvent> mevents = new List<MidiEvent>();
+		Debug.Log (EditableMidiData.instance.uiNoteList.Count);
+		foreach (var un in EditableMidiData.instance.uiNoteList)
+		{
+			mevents.Add(un.noteOnEvent);
+			mevents.Add(un.noteOffEvent);
+		}
+
+		SortDataByStartTime(events[0], mevents);
+	}
+
+	public void StopPlayer ()
+	{
+		currentTimer = 0;
+		currentTrackIndex = 0;
+		for (int i = 0; i < 32; i++) {
+			tmpEventIndex [i] = 0;
+		}
+		currEventCount = 0;
+		isPlaying = false;
+	}
 
     // Use this for initialization
     void Start()
@@ -51,6 +80,7 @@ public class MidiPlayer : MonoBehaviour
         Debug.Log("Ticks per quarter notes: " + quarternote);
         Debug.Log("Tempo : " + tempo);
         Debug.Log("ticks Per Frame : " + ticksPerSecond);
+		GetComponent<LineRenderer> ().sortingOrder = 5;
     }
 
     private void FixedUpdate()
@@ -64,28 +94,16 @@ public class MidiPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isSorted)
-        {
-            isSorted = false;
-
-            List<MidiEvent> mevents = new List<MidiEvent>();
-            foreach (var un in EditableMidiData.instance.uiNoteList)
-            {
-                mevents.Add(un.noteOnEvent);
-                mevents.Add(un.noteOffEvent);
-            }
-
-            SortDataByStartTime(events[0], mevents);
-        }
 
         if (isPlaying)
         {
 
+			GetComponent<LineRenderer>().SetPosition(0,new Vector3(currentTimer / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.zero).y,0f));
+			GetComponent<LineRenderer>().SetPosition(1,new Vector3(currentTimer / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.up).y,0f));
             debugTimer += Time.deltaTime;
 
             if (debugTimer > 1f)
-            {
-                Debug.Log("Current Ticks : " + currentTimer);
+			{
                 Debug.Log(events.Length);
                 debugTimer = 0f;
             }
@@ -95,7 +113,7 @@ public class MidiPlayer : MonoBehaviour
             for (int i = 0; i < events.Length && currentTimer <= totalpulses; i++)
             {
                 List<MidiEvent> mevent = events[i];
-
+				Debug.Log ("mevent : " + mevent.Count);
                 currEventCount = tmpEventIndex[i];
                 while (currEventCount < mevent.Count && currentTimer >= mevent[currEventCount].StartTime)
                 {
@@ -103,7 +121,8 @@ public class MidiPlayer : MonoBehaviour
                         currentTimer >= mevent[currEventCount].StartTime)
                     {
                         currNoteNumber = mevent[currEventCount].Notenumber;
-                        sList[currNoteNumber - 24].GetComponent<AudioSource>().Play();
+						sList[currNoteNumber].GetComponent<AudioSource>().Play();
+						Debug.Log ("asdfasdf");
                     }
                     else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity == 0 && currentTimer >= mevent[currEventCount].StartTime)
                     {
@@ -126,24 +145,14 @@ public class MidiPlayer : MonoBehaviour
         }
     }
 
-    public void SortDataByStartTime(List<MidiEvent> source, List<MidiEvent> events)
+    public void SortDataByStartTime(List<MidiEvent> source, List<MidiEvent> events2)
     {
-        foreach (MidiEvent mevent in events)
-        {
-            for (int i = source.Count - 1; i >= 0; i--)
-            {
-                if (i >= 0 && mevent.StartTime >= source[i].StartTime)
-                {
-                    if (i == source.Count - 1)
-                    {
-                        source.Add(mevent);
-                    }
-                    else
-                    {
-                        source.Insert(i + 1, mevent);
-                    }
-                }
-            }
-        }
+		foreach (var mevent in events2) {
+			source.Add (mevent);
+		}
+
+		source.Sort(((x, y) => x.StartTime - y.StartTime));
+		Debug.Log ("Source: " + source.Count);
+		Debug.Log ("events2: " + events2.Count);
     }
 }

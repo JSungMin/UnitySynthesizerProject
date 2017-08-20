@@ -18,6 +18,7 @@ public enum PianoRollToolType
 
 public enum ClickableType
 {
+	NoneClickable,
 	ClickOnly,
 	ClickAndDrag
 }

@@ -6,26 +6,37 @@ public class PianoButtonInput : MonoBehaviour {
 	public PlayerTouchInput touchInput;
 	public CreateNodeTable nodeTable;
 
+	public MidiPlayer midiPlayer;
+	private CreateNodeTable table;
+
 	public int buttonIndex;
 
 	void Start ()
 	{
 		touchInput = GameObject.FindObjectOfType <PlayerTouchInput> ();
 		nodeTable = GameObject.FindObjectOfType <CreateNodeTable> ();
+		midiPlayer = GameObject.FindObjectOfType <MidiPlayer> ();
+		table = GameObject.FindObjectOfType <CreateNodeTable> ();
+	}
+
+	public bool isPressed = false;
+
+	public void PressUp ()
+	{
+
 	}
 
 	public void CreateNode ()
 	{
-		var width = 0.64f;
-		var height = 0.52f;
-		if (nodeTable.resolution == CreateNodeTable.timeResolution.Eighth) {
-			width = 0.32f;
-		} 
+		var multipler = 1;
 
+		if (table.resolution == CreateNodeTable.timeResolution.Eighth) {
+			multipler = 2;
+		}
+		;
+		var currenttics = (int)(midiPlayer.currentTimer / (EditableMidiData.instance.defaultQuarterPerTicks / multipler)+0.5f) * EditableMidiData.instance.defaultQuarterPerTicks;
 
-		var createPos = new Vector3 (0f,(touchInput.nowPianoInputOctave + buttonIndex) * height, 0f);
-
-		var newObj = UIPianoNote.CreateUIPianoNote (createPos);
+		var newObj = UIPianoNote.CreateUIPianoNote (currenttics, touchInput.nowPianoInputOctave * 12  + buttonIndex);
 		newObj.GetComponent<UIPianoNote> ().NoteOn ();
 		touchInput.ChangeClickObject (newObj);
 	}

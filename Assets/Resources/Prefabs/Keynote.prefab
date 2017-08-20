@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212294237400670332}
   - component: {fileID: 114925749614538600}
   - component: {fileID: 65082263745429664}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Keynote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickableType: 1
   objectType: 0
+  noteOnEvent:
+    DeltaTime: 0
+    StartTime: 0
+    HasEventflag: 0
+    EventFlag: 0
+    Channel: 0
+    Notenumber: 0
+    Velocity: 0
+    Instrument: 0
+    KeyPressure: 0
+    ChanPressure: 0
+    ControlNum: 0
+    ControlValue: 0
+    PitchBend: 0
+    Numerator: 0
+    Denominator: 0
+    Tempo: 0
+    Metaevent: 0
+    Metalength: 0
+    Value: 
+  noteOffEvent:
+    DeltaTime: 0
+    StartTime: 0
+    HasEventflag: 0
+    EventFlag: 0
+    Channel: 0
+    Notenumber: 0
+    Velocity: 0
+    Instrument: 0
+    KeyPressure: 0
+    ChanPressure: 0
+    ControlNum: 0
+    ControlValue: 0
+    PitchBend: 0
+    Numerator: 0
+    Denominator: 0
+    Tempo: 0
+    Metaevent: 0
+    Metalength: 0
+    Value: 
+  tick: 0
+  key: 0
+  duration: 0
 --- !u!212 &212294237400670332
 SpriteRenderer:
   m_ObjectHideFlags: 1

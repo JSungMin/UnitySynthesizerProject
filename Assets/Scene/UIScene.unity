@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 29952431}
   - component: {fileID: 29952430}
   - component: {fileID: 29952433}
+  - component: {fileID: 29952434}
   m_Layer: 5
   m_Name: White2
   m_TagString: Untagged
@@ -243,7 +244,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 4
+  isPressed: 0
+--- !u!114 &29952434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 29952428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &34093503
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +272,7 @@ GameObject:
   - component: {fileID: 34093506}
   - component: {fileID: 34093505}
   - component: {fileID: 34093508}
+  - component: {fileID: 34093509}
   m_Layer: 5
   m_Name: White1
   m_TagString: Untagged
@@ -379,7 +396,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 2
+  isPressed: 0
+--- !u!114 &34093509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34093503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &184911054
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +424,7 @@ GameObject:
   - component: {fileID: 184911058}
   - component: {fileID: 184911057}
   - component: {fileID: 184911056}
+  - component: {fileID: 184911060}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -518,6 +551,65 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 184911054}
+--- !u!65 &184911060
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 184911054}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 250, y: 150, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &205945373
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4214983869304256, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114353421255634290, guid: ab2375591b3dbf2488b812c49dfb6c05,
+        type: 2}
+      propertyPath: parent
+      value: 
+      objectReference: {fileID: 841812351}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: ab2375591b3dbf2488b812c49dfb6c05, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &230494360
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,7 +725,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &286041959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,6 +801,7 @@ GameObject:
   - component: {fileID: 377524844}
   - component: {fileID: 377524843}
   - component: {fileID: 377524846}
+  - component: {fileID: 377524847}
   m_Layer: 5
   m_Name: Black (4)
   m_TagString: Untagged
@@ -832,7 +925,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 10
+  isPressed: 0
+--- !u!114 &377524847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 377524841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &424051312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1108,7 +1216,12 @@ MonoBehaviour:
   nowClickedObj: {fileID: 0}
   prevClickedObj: {fileID: 0}
   nowPianoInputOctave: 1
+  octaveBar: {fileID: 1231518414}
+  octaveLabel: {fileID: 1155338242}
   rollToolType: 0
+  noteLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!4 &532671162
 Transform:
   m_ObjectHideFlags: 0
@@ -1137,6 +1250,48 @@ MonoBehaviour:
   channel: 0
   instrument: 30
   uiNoteList: []
+--- !u!1001 &569968496
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4531671244062764, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8195e6c1ffedd01408b0b4e6e9a90bca, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &693101864
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1462,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 813831455}
+--- !u!1 &841812351 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1990781884615718, guid: 8195e6c1ffedd01408b0b4e6e9a90bca,
+    type: 2}
+  m_PrefabInternal: {fileID: 569968496}
 --- !u!1 &891690158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,6 +1479,8 @@ GameObject:
   - component: {fileID: 891690161}
   - component: {fileID: 891690160}
   - component: {fileID: 891690163}
+  - component: {fileID: 891690164}
+  - component: {fileID: 891690165}
   m_Layer: 5
   m_Name: White0
   m_TagString: Untagged
@@ -1382,18 +1544,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 891690161}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 891690163}
-        m_MethodName: CreateNode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &891690161
@@ -1442,7 +1593,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 532671161}
   nodeTable: {fileID: 440193607}
+  midiPlayer: {fileID: 0}
   buttonIndex: 0
+  isPressed: 0
+--- !u!114 &891690164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891690158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
+--- !u!114 &891690165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891690158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 891690163}
+          m_MethodName: CreateNode
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &894840725
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,6 +1788,7 @@ GameObject:
   - component: {fileID: 1009649538}
   - component: {fileID: 1009649537}
   - component: {fileID: 1009649536}
+  - component: {fileID: 1009649539}
   m_Layer: 5
   m_Name: Stop
   m_TagString: Untagged
@@ -1678,6 +1875,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1535527630}
+        m_MethodName: StopPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1009649537
@@ -1713,6 +1921,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1009649534}
+--- !u!65 &1009649539
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1009649534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1019960434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,6 +1945,7 @@ GameObject:
   - component: {fileID: 1019960437}
   - component: {fileID: 1019960436}
   - component: {fileID: 1019960439}
+  - component: {fileID: 1019960440}
   m_Layer: 5
   m_Name: Black (1)
   m_TagString: Untagged
@@ -1848,7 +2069,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 3
+  isPressed: 0
+--- !u!114 &1019960440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1019960434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &1098718522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,7 +2179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -391.72, y: 57.05001}
+  m_AnchoredPosition: {x: -390, y: 169}
   m_SizeDelta: {x: 294.57, y: 114.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155338242
@@ -1972,13 +2208,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 1
 --- !u!222 &1155338243
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2037,17 +2273,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1231518412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 693101865}
   m_Father: {fileID: 1538530768}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -391.72, y: 146.7}
+  m_AnchoredPosition: {x: -391.72, y: -19}
   m_SizeDelta: {x: 294.57, y: 65.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1231518414
@@ -2088,12 +2324,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 737463431}
   m_HandleRect: {fileID: 737463430}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 0.1
   m_Size: 0.2
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 532671161}
+        m_MethodName: ChangeOctave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Scrollbar+ScrollEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1231518415
@@ -2237,6 +2484,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 532671161}
+        m_MethodName: SetPianoRollTool
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1232368598
@@ -2318,6 +2576,7 @@ GameObject:
   - component: {fileID: 1440777183}
   - component: {fileID: 1440777182}
   - component: {fileID: 1440777185}
+  - component: {fileID: 1440777186}
   m_Layer: 5
   m_Name: Black (3)
   m_TagString: Untagged
@@ -2441,7 +2700,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 8
+  isPressed: 0
+--- !u!114 &1440777186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1440777180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &1459475927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,7 +2972,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528647058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 14.6, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2715,6 +2989,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a69c93d63ed5c9c46a634258109b53ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1535527629 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1534882820917408, guid: ab2375591b3dbf2488b812c49dfb6c05,
+    type: 2}
+  m_PrefabInternal: {fileID: 205945373}
+--- !u!114 &1535527630 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114353421255634290, guid: ab2375591b3dbf2488b812c49dfb6c05,
+    type: 2}
+  m_PrefabInternal: {fileID: 205945373}
+  m_Script: {fileID: 11500000, guid: 462ae36048f2cef44a83acec967283a5, type: 3}
+--- !u!120 &1535527632
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1535527629}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 0
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    serializedVersion: 2
+    widthMultiplier: 0.1
+    widthCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 2
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    colorGradient:
+      serializedVersion: 2
+      key0: {r: 0, g: 0.9130435, b: 1, a: 1}
+      key1: {r: 0, g: 0.9130435, b: 1, a: 1}
+      key2: {r: 0.36862746, g: 0.47843137, b: 1, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 65535
+      ctime3: 58982
+      ctime4: 65535
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 65535
+      atime3: 65535
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+    numCornerVertices: 0
+    numCapVertices: 0
+    alignment: 0
+    textureMode: 0
+    generateLightingData: 0
+  m_UseWorldSpace: 1
+  m_Loop: 0
 --- !u!1 &1538530767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2832,6 +3203,7 @@ GameObject:
   - component: {fileID: 1560617519}
   - component: {fileID: 1560617518}
   - component: {fileID: 1560617521}
+  - component: {fileID: 1560617522}
   m_Layer: 5
   m_Name: Black (2)
   m_TagString: Untagged
@@ -2955,7 +3327,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 6
+  isPressed: 0
+--- !u!114 &1560617522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1560617516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &1607355776
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,6 +3566,7 @@ GameObject:
   - component: {fileID: 1665336699}
   - component: {fileID: 1665336698}
   - component: {fileID: 1665336701}
+  - component: {fileID: 1665336702}
   m_Layer: 5
   m_Name: White5
   m_TagString: Untagged
@@ -3302,7 +3690,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 9
+  isPressed: 0
+--- !u!114 &1665336702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1665336696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1001 &1669165522
 Prefab:
   m_ObjectHideFlags: 0
@@ -3356,6 +3759,7 @@ GameObject:
   - component: {fileID: 1673581267}
   - component: {fileID: 1673581266}
   - component: {fileID: 1673581265}
+  - component: {fileID: 1673581268}
   m_Layer: 5
   m_Name: Edit
   m_TagString: Untagged
@@ -3453,6 +3857,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 532671161}
+        m_MethodName: SetPianoRollTool
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1673581266
@@ -3488,6 +3903,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1673581263}
+--- !u!65 &1673581268
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1673581263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 500, y: 500, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1680252799
 GameObject:
   m_ObjectHideFlags: 0
@@ -3545,6 +3972,7 @@ GameObject:
   - component: {fileID: 1710906479}
   - component: {fileID: 1710906478}
   - component: {fileID: 1710906481}
+  - component: {fileID: 1710906482}
   m_Layer: 5
   m_Name: White4
   m_TagString: Untagged
@@ -3668,7 +4096,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 7
+  isPressed: 0
+--- !u!114 &1710906482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710906476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &1859739741
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,6 +4197,7 @@ GameObject:
   - component: {fileID: 1868639387}
   - component: {fileID: 1868639386}
   - component: {fileID: 1868639385}
+  - component: {fileID: 1868639388}
   m_Layer: 5
   m_Name: Record
   m_TagString: Untagged
@@ -3840,6 +4284,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1535527630}
+        m_MethodName: SetSort
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1868639386
@@ -3875,6 +4330,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1868639383}
+--- !u!65 &1868639388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1868639383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2008341665
 GameObject:
   m_ObjectHideFlags: 0
@@ -3887,6 +4354,7 @@ GameObject:
   - component: {fileID: 2008341668}
   - component: {fileID: 2008341667}
   - component: {fileID: 2008341670}
+  - component: {fileID: 2008341671}
   m_Layer: 5
   m_Name: White3
   m_TagString: Untagged
@@ -4010,7 +4478,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 5
+  isPressed: 0
+--- !u!114 &2008341671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2008341665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &2029818294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,6 +4805,7 @@ GameObject:
   - component: {fileID: 2091193512}
   - component: {fileID: 2091193511}
   - component: {fileID: 2091193514}
+  - component: {fileID: 2091193515}
   m_Layer: 5
   m_Name: Black
   m_TagString: Untagged
@@ -4445,7 +4929,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 1
+  isPressed: 0
+--- !u!114 &2091193515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2091193509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0
 --- !u!1 &2102507457
 GameObject:
   m_ObjectHideFlags: 0
@@ -4554,6 +5053,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 532671161}
+        m_MethodName: SetPianoRollTool
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &2102507460
@@ -4589,6 +5099,53 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2102507457}
+--- !u!1001 &2128495083
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470487897365726, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114710300066387130, guid: 041538b1d07a07b4b994cbeac4bc2630,
+        type: 2}
+      propertyPath: MidiPlayer
+      value: 
+      objectReference: {fileID: 1535527629}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 041538b1d07a07b4b994cbeac4bc2630, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &2142476023
 GameObject:
   m_ObjectHideFlags: 0
@@ -4601,6 +5158,7 @@ GameObject:
   - component: {fileID: 2142476026}
   - component: {fileID: 2142476025}
   - component: {fileID: 2142476028}
+  - component: {fileID: 2142476029}
   m_Layer: 5
   m_Name: White6
   m_TagString: Untagged
@@ -4724,4 +5282,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   touchInput: {fileID: 0}
   nodeTable: {fileID: 0}
+  midiPlayer: {fileID: 0}
   buttonIndex: 11
+  isPressed: 0
+--- !u!114 &2142476029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142476023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae5740c48cb3f543a35a57af9a62aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickableType: 0
+  objectType: 0

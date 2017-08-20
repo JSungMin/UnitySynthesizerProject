@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerTouchInput : MonoBehaviour {
 	
@@ -15,6 +17,8 @@ public class PlayerTouchInput : MonoBehaviour {
 	public ClickAbleObject prevClickedObj;
 
 	public int nowPianoInputOctave = 1;
+	public Scrollbar octaveBar;
+	public Text octaveLabel;
 
 	void Start ()
 	{
@@ -24,6 +28,12 @@ public class PlayerTouchInput : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		GetTouchInput ();
+	}
+
+	public void ChangeOctave ()
+	{
+		nowPianoInputOctave = (int)(octaveBar.value * 10);
+		octaveLabel.text = nowPianoInputOctave.ToString ();
 	}
 
 	public void ChangeClickObject (ClickAbleObject clickedObj)
@@ -73,6 +83,12 @@ public class PlayerTouchInput : MonoBehaviour {
 
 	public PianoRollToolType rollToolType = PianoRollToolType.Pencil;
 
+	public void SetPianoRollTool (int type)
+	{
+		rollToolType = (PianoRollToolType)(type);
+	}
+
+	public LayerMask noteLayer;
 	public void InputInPianoRollPanel (Touch touch)
 	{
 		Debug.Log ("Enter IN Roll");
@@ -80,10 +96,24 @@ public class PlayerTouchInput : MonoBehaviour {
 		switch (touch.phase) {
 		case TouchPhase.Began:
 			Debug.Log ("Began IN Roll");
+
+			var pointerData = new PointerEventData (EventSystem.current);
+
+			pointerData.position = Input.mousePosition;
+
+			List<RaycastResult> results = new List<RaycastResult> ();
+			EventSystem.current.RaycastAll (pointerData, results); 
+
+			if (0 != results.Count)
+				return;
+			if (rollToolType == PianoRollToolType.Erase)
+			{
+				return;
+			}
 			if (Physics.Raycast (touchPosition, Vector3.forward, out hit)) {
 				Debug.Log ("Casted");
 				var obj = hit.collider.GetComponent<ClickAbleObject> ();
-				if (null != obj) {
+				if (null != obj && obj.clickableType != ClickableType.NoneClickable) {
 					ChangeClickObject (obj);
 				} 
 			}

@@ -179,7 +179,7 @@ using UnityEngine;
 public class MidiFile : MonoBehaviour
 {
     private string filename;          /** The Midi file name */
-    private List<MidiEvent>[] events; /** The raw MidiEvents, one list per track */
+	public List<MidiEvent>[] events; /** The raw MidiEvents, one list per track */
     private List<MidiTrack> tracks;  /** The tracks of the midifile that have notes */
     private ushort trackmode;         /** 0 (single track), 1 (simultaneous tracks) 2 (independent tracks) */
     private int quarternote;          /** The number of pulses per quarter note */
@@ -451,7 +451,10 @@ public class MidiFile : MonoBehaviour
         tempo = 500000;
         quarternote = 128;
         totalpulses = 5000;
-        events = new List<MidiEvent>[16];
+        events = new List<MidiEvent>[2];
+		for (int i = 0; i < 2; i++) {
+			events [i] = new List<MidiEvent> ();
+		}
         MidiPlayerUpdate();
 
      //   MidiFileRead("Assets/Scripts/mp.mid");
