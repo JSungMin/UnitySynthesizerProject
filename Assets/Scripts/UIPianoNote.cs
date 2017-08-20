@@ -44,6 +44,7 @@ public class UIPianoNote : ClickAbleObject {
 		noteOnEvent.StartTime = GetNoteStartTime ();
 		noteOnEvent.Notenumber = GetNoteNumber ();
 		noteOnEvent.Velocity = 127;
+		GameObject.FindObjectOfType<MidiPlayer> ().sList [noteOnEvent.Notenumber].GetComponent<AudioSource> ().Play ();
 	}
 
 	public void NoteOff ()
@@ -52,6 +53,7 @@ public class UIPianoNote : ClickAbleObject {
 		noteOffEvent.EventFlag = EventNoteOff;
 		noteOffEvent.StartTime = GetNoteEndTime ();
 		noteOffEvent.Notenumber = GetNoteNumber ();
+		GameObject.FindObjectOfType<MidiPlayer> ().sList [noteOnEvent.Notenumber].GetComponent<AudioSource> ().Stop ();
 	}
 
 	public static ClickAbleObject CreateUIPianoNote (Vector3 touchPos)
@@ -90,7 +92,7 @@ public class UIPianoNote : ClickAbleObject {
 		var table = GameObject.FindObjectOfType <CreateNodeTable> ();
 
 		var multipler = 1;
-
+		Debug.Log ("!");
 		if (table.resolution == CreateNodeTable.timeResolution.Eighth) {
 			multipler = 2;
 		}
@@ -102,6 +104,9 @@ public class UIPianoNote : ClickAbleObject {
 		var newObj = Instantiate (PlayerTouchInput.instance.uiKeyNoteObj, Vector3.zero, Quaternion.identity);
 		newObj.transform.parent = PlayerTouchInput.instance.uiNotePool;
 		newObj.transform.position = new Vector3 (firstX, firstY, 0);
+		newObj.GetComponent<SpriteRenderer>().size = new Vector2 (0.64f / multipler, 0.52f);
+		newObj.GetComponent<BoxCollider> ().size = new Vector3 (0.64f / multipler, 0.52f, 0.1f);
+		newObj.GetComponent<BoxCollider> ().center = new Vector3 (0.32f / multipler, 0.26f / multipler, 0.2f);
 		newObj.GetComponent<UIPianoNote> ().tick = ticks;
 		newObj.GetComponent<UIPianoNote> ().key = key;
 		Debug.Log (newObj);
@@ -180,18 +185,23 @@ public class UIPianoNote : ClickAbleObject {
 		var firstY = diviY * 0.54f;
 
 		obj.transform.position = new Vector3 (firstX, firstY, 0);
+		var midiPlayer = GameObject.FindObjectOfType <MidiPlayer> ();
+		var onIndex = midiPlayer.events [0].IndexOf (obj.GetComponent<UIPianoNote> ().noteOnEvent);
+		var offIndex = midiPlayer.events [0].IndexOf (obj.GetComponent<UIPianoNote> ().noteOffEvent);
+
+		var midiFile = GameObject.FindObjectOfType <MidiFile> ();
 
 		obj.GetComponent<UIPianoNote> ().NoteOn ();
 		obj.GetComponent<UIPianoNote> ().NoteOff ();
 
 		var index = EditableMidiData.instance.uiNoteList.IndexOf (obj.GetComponent<UIPianoNote> ());
+		midiPlayer.events [0] [onIndex] = obj.GetComponent<UIPianoNote> ().noteOnEvent;
+		midiPlayer.events [0] [offIndex] = obj.GetComponent<UIPianoNote> ().noteOffEvent;
+
+		midiFile.events [0] [onIndex] = obj.GetComponent<UIPianoNote> ().noteOnEvent;
+		midiFile.events [0] [offIndex] = obj.GetComponent<UIPianoNote> ().noteOffEvent;
+
 		EditableMidiData.instance.uiNoteList [index] = obj.GetComponent<UIPianoNote>();
-
-		var midiP = GameObject.FindObjectOfType <MidiPlayer> ();
-		var midiF = GameObject.FindObjectOfType <MidiFile> ();
-
-
-
 	}
 
 	/* The list of Midi Events */

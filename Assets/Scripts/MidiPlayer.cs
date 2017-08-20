@@ -59,6 +59,9 @@ public class MidiPlayer : MonoBehaviour
 			tmpEventIndex [i] = 0;
 		}
 		currEventCount = 0;
+		var lineRenderer = GetComponent<LineRenderer> ();
+		lineRenderer.SetPosition(0,new Vector3(0 / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.zero).y,0f));
+		lineRenderer.SetPosition(1,new Vector3(0 / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.up).y,0f));
 		isPlaying = false;
 	}
 

@@ -33,7 +33,7 @@ public class PianoButtonInput : MonoBehaviour {
 		if (table.resolution == CreateNodeTable.timeResolution.Eighth) {
 			multipler = 2;
 		}
-		;
+
 		var currenttics = (int)(midiPlayer.currentTimer / (EditableMidiData.instance.defaultQuarterPerTicks / multipler)+0.5f) * EditableMidiData.instance.defaultQuarterPerTicks;
 
 		var newObj = UIPianoNote.CreateUIPianoNote (currenttics, touchInput.nowPianoInputOctave * 12  + buttonIndex);
