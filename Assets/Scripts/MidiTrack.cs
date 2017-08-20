@@ -58,14 +58,6 @@ public class MidiTrack
         }
     }
 
-    //foreach (var note in notes)
-    //        {
-    //            nn.Add(new NoteData(i.StartTime, true, i.Number, i.Channel)); // 시작시간, Key OFF, 음계, ?, 채널
-    //            nn.Add(new NoteData(i.EndTime, false, i.Number, i.Channel));
-    //        }
-    //        nn.Sort(((x, y) => x.time - y.time));
-    //        return nn;
-
     /** Create a MidiTrack based on the Midi events.  Extract the NoteOn/NoteOff
         *  events to gather the list of MidiNotes.
         */

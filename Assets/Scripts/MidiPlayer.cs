@@ -83,7 +83,7 @@ public class MidiPlayer : MonoBehaviour
         Debug.Log("Ticks per quarter notes: " + quarternote);
         Debug.Log("Tempo : " + tempo);
         Debug.Log("ticks Per Frame : " + ticksPerSecond);
-		GetComponent<LineRenderer> ().sortingOrder = 5;
+	//	GetComponent<LineRenderer> ().sortingOrder = 5;
     }
 
     private void FixedUpdate()
@@ -116,7 +116,6 @@ public class MidiPlayer : MonoBehaviour
             for (int i = 0; i < events.Length && currentTimer <= totalpulses; i++)
             {
                 List<MidiEvent> mevent = events[i];
-				Debug.Log ("mevent : " + mevent.Count);
                 currEventCount = tmpEventIndex[i];
                 while (currEventCount < mevent.Count && currentTimer >= mevent[currEventCount].StartTime)
                 {
@@ -124,8 +123,7 @@ public class MidiPlayer : MonoBehaviour
                         currentTimer >= mevent[currEventCount].StartTime)
                     {
                         currNoteNumber = mevent[currEventCount].Notenumber;
-						sList[currNoteNumber].GetComponent<AudioSource>().Play();
-						Debug.Log ("asdfasdf");
+						sList[currNoteNumber - 24].GetComponent<AudioSource>().Play();
                     }
                     else if (mevent[currEventCount].EventFlag == MidiFile.EventNoteOn && mevent[currEventCount].Velocity == 0 && currentTimer >= mevent[currEventCount].StartTime)
                     {
@@ -139,7 +137,6 @@ public class MidiPlayer : MonoBehaviour
                     {
                         tempo = mevent[currEventCount].Tempo;
                         ticksPerSecond = (totalTempo / tempo * quarternote / 60);
-                        Debug.Log("tempo : " + tempo);
                     }
                     currEventCount++;
                 }
@@ -155,7 +152,5 @@ public class MidiPlayer : MonoBehaviour
 		}
 
 		source.Sort(((x, y) => x.StartTime - y.StartTime));
-		Debug.Log ("Source: " + source.Count);
-		Debug.Log ("events2: " + events2.Count);
     }
 }
