@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MidiPlayer : MonoBehaviour
 {
-    public AudioClip[] audioClips = new AudioClip[128];
+	public AudioClip[] metronomeClips;
+	public AudioSource metronmeSource;
+	public AudioClip[] audioClips = new AudioClip[128];
     public List<GameObject> sList = new List<GameObject>();
     public string[] scale = { "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#" };
     public GameObject parent;
@@ -86,13 +88,33 @@ public class MidiPlayer : MonoBehaviour
 	//	GetComponent<LineRenderer> ().sortingOrder = 5;
     }
 
+	int metrioCount = 4;
+
     private void FixedUpdate()
     {
-        if (isPlaying)
-            currentTimer += ticksPerSecond * Time.fixedDeltaTime;
+		if (isPlaying) {
+			metroTimer += ticksPerSecond * Time.fixedDeltaTime;
+
+			if (metroTimer >= EditableMidiData.instance.defaultQuarterPerTicks)
+			{
+				if (metrioCount < 3) {
+					metronmeSource.clip = metronomeClips [1];
+					metrioCount++;
+				} else {
+					metronmeSource.clip = metronomeClips [0];
+					metrioCount = 0;
+				}
+				metronmeSource.Play ();
+				metroTimer = 0f;
+			}
+
+			currentTimer += ticksPerSecond * Time.fixedDeltaTime;
+		}
         else
             currentTimer = 0f;
     }
+
+	public float metroTimer = 0;
 
     // Update is called once per frame
     void Update()
@@ -100,7 +122,6 @@ public class MidiPlayer : MonoBehaviour
 
         if (isPlaying)
         {
-
 			GetComponent<LineRenderer>().SetPosition(0,new Vector3(currentTimer / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.zero).y,0f));
 			GetComponent<LineRenderer>().SetPosition(1,new Vector3(currentTimer / EditableMidiData.instance.defaultQuarterPerTicks * 0.64f,Camera.main.ViewportToWorldPoint (Vector3.up).y,0f));
             debugTimer += Time.deltaTime;
